@@ -20,7 +20,34 @@ filtered_data[, Global_reactive_power := as.numeric(Global_reactive_power)]
 # Abrir el dispositivo gráfico (guardar como PNG)
 png("plot4.png", width = 480, height = 480)
 
-# Crear el gráfico de líneas
+#Gráfico 1 
+hist(filtered_data$Global_activepower, col = "red", main = "Global Active Power", xlab = "Global Active Power (kilowatts)")
+#Gráfico 2
+
+plot(filtered_data$DateTime, filtered_data$Global_active_power, 
+     type = "l", # Tipo de gráfico: "l" para líneas
+     col = "black", 
+     xlab = "Fecha y Hora", 
+     ylab = "Global Active Power (kilowatts)", 
+     main = "Global Active Power over Time")
+
+#Gráfico 3
+plot(filtered_data$DateTime, filtered_data$Sub_metering_1, 
+     type = "l", # Tipo de gráfico: "l" para líneas
+     col = "black", 
+     xlab = "Fecha y Hora", 
+     ylab = "Energy Sub Metering", 
+     main = "Energy Sub Metering over Time")
+
+lines(filtered_data$DateTime, filtered_data$Sub_metering_2, col = "red")
+lines(filtered_data$DateTime, filtered_data$Sub_metering_3, col = "blue")
+
+
+legend("topright", legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
+       col = c("black", "red", "blue"), lty = 1)
+
+
+# Gráfico 4
 plot(filtered_data$DateTime, filtered_data$Global_reactive_power, 
      type = "l", # Tipo de gráfico: "l" para líneas
      col = "purple", 
